@@ -4,7 +4,7 @@
     * @backupStaticAttributes disabled
     */
 
-    require_once 'src/Categroy.php';
+    require_once 'src/Category.php';
 
     $server = 'mysql:host=localhost;dbname=to_do_test';
     $username = 'root';
@@ -73,7 +73,7 @@
             $result = Category::getAll();
 
             //Assert
-            $this->assertEquals([$test_Category, $test_Categroy2], $result);
+            $this->assertEquals([$test_Category, $test_Category2], $result);
         }
 
         function test_deleteAll()
