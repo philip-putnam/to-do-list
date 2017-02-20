@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "e1bcf9d2114d1e090052a01be629d6ba",
+=======
+    "hash": "8b16919347f661c5810a59968c70f04a",
+>>>>>>> 115b8aa1812aa6dd6e09272f8ddb782f40986caf
     "content-hash": "6c34db3392923136aa076f84d7f68ebf",
     "packages": [
         {
@@ -1183,6 +1187,7 @@
         },
         {
             "name": "symfony/debug",
+<<<<<<< HEAD
             "version": "v3.2.4",
             "source": {
                 "type": "git",
@@ -1193,6 +1198,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/debug/zipball/9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
                 "reference": "9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
+=======
+            "version": "v3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b4d9818f127c60ce21ed62c395da7df868dc8477",
+                "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477",
+>>>>>>> 115b8aa1812aa6dd6e09272f8ddb782f40986caf
                 "shasum": ""
             },
             "require": {
@@ -1236,7 +1253,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-02-16 16:34:18"
+=======
+            "time": "2017-01-28 02:37:08"
+>>>>>>> 115b8aa1812aa6dd6e09272f8ddb782f40986caf
         },
         {
             "name": "symfony/event-dispatcher",

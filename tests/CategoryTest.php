@@ -1,5 +1,4 @@
 <?php
-
     /**
     * @backupGlobals disabled
     * @backupStaticAttributes disabled
@@ -15,7 +14,6 @@
 
     class CategoryTest extends PHPUnit_Framework_TestCase
     {
-
         protected function tearDown()
         {
           Category::deleteAll();
@@ -139,6 +137,8 @@
             //Assert
             $this->assertEquals($test_Category, $result);
         }
+
     }
+
 
 ?>
