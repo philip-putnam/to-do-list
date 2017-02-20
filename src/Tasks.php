@@ -3,11 +3,13 @@ class Tasks
 {
     private $description;
     private $id;
+    private $category_id;
 
-    function __construct($description, $id = null)
+    function __construct($description, $id = null, $category_id)
     {
         $this->description = $description;
         $this->id = $id;
+        $this->category_id = $category_id;
     }
 
     function getDescription()
@@ -25,9 +27,14 @@ class Tasks
         return $this->id;
     }
 
+    function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+        $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id) VALUES ('{$this->getDescription()}', {$this->getCategoryId()});");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
@@ -38,7 +45,8 @@ class Tasks
         foreach($returned_tasks as $task) {
             $description = $task['description'];
             $id = $task['id'];
-            $new_task = new Tasks($description, $id);
+            $category_id = $task['category_id'];
+            $new_task = new Tasks($description, $id, $category_id);
             array_push($tasks, $new_task);
         }
         return $tasks;
@@ -53,9 +61,9 @@ class Tasks
     {
         $found_task = null;
         $tasks = Tasks::getAll();
-        foreach($tasks as $ask) {
+        foreach($tasks as $task) {
             $task_id = $task->getId();
-            if ($task_id == $seach_id) {
+            if ($task_id == $search_id) {
                 $found_task = $task;
             }
         }

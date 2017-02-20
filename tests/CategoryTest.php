@@ -6,8 +6,9 @@
     */
 
     require_once "src/Category.php";
+    require_once "src/Tasks.php";
 
-    $server = 'mysql:host=localhost;dbname=to_do_test';
+    $server = 'mysql:host=localhost:8889;dbname=to_do_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -18,6 +19,32 @@
         protected function tearDown()
         {
           Category::deleteAll();
+          Tasks::deleteAll();
+        }
+
+        function testGetTasks()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $test_category_id = $test_category->getId();
+
+            $description = "Email client";
+            $test_task = new Tasks($description, $id, $test_category_id);
+            $test_task->save();
+
+            $description2 = "Meet with boss";
+            $test_task2 = new Tasks($description2, $id, $test_category_id);
+            $test_task2->save();
+
+            //Act
+            $result = $test_category->getTasks();
+
+            //Assert
+            $this->assertEquals([$test_task, $test_task2], $result);
         }
 
         function test_getName()
