@@ -49,6 +49,33 @@
             $this->assertEquals("Drink coffee.", $result);
         }
 
+        function test_getDone()
+        {
+            //Arrange
+            $description = "Do dishes.";
+            $test_task = new Task($description);
+
+            //Act
+            $result = $test_task->getDone();
+
+            //Assert
+            $this->assertEquals(false, $result);
+        }
+
+        function test_setDone()
+        {
+          //Arrange
+          $description = "Do dishes.";
+          $test_task = new Task($description);
+
+          //Act
+          $test_task->setDone(true);
+          $result = $test_task->getDone();
+
+          //Assert
+          $this->assertEquals(true, $result);
+        }
+
         function testGetId()
         {
             //Arrange

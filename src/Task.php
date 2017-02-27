@@ -2,11 +2,13 @@
     class Task
     {
         private $description;
+        private $done;
         private $id;
 
         function __construct($description, $id = null)
         {
             $this->description = $description;
+            $this->done = false;
             $this->id = $id;
         }
 
@@ -18,6 +20,16 @@
         function getDescription()
         {
             return $this->description;
+        }
+
+        function getDone()
+        {
+            return $this->done;
+        }
+
+        function setDone($new_done)
+        {
+            $this->done = $new_done;
         }
 
         function getId()

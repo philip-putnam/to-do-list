@@ -2,7 +2,7 @@
 
     date_default_timezone_set('America/Los_Angeles');
     require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../src/Tasks.php";
+    require_once __DIR__."/../src/Task.php";
     require_once __DIR__."/../src/Category.php";
 
 
@@ -31,22 +31,28 @@
 
     $app->get("/categories/{id}", function($id) use ($app) {
         $category = Category::find($id);
-        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+        $tasks = $category->getTasks();
+        return $app['twig']->render('category.html.twig', [
+          'category' => $category,
+          'tasks' => $tasks
+        ]);
     });
 
     $app->post("/tasks", function() use ($app) {
         $description = $_POST['description'];
         $category_id = $_POST['category_id'];
         $due_date = $_POST['due_date'];
-        var_dump($due_date);
-        $task = new Tasks($description, $id = null, $category_id, $due_date);
+
+        $task = new Task($description, $id = null);
         $task->save();
         $category = Category::find($category_id);
-        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+        $category->addTask($task);
+
+        return $app->redirect("/categories/{$category_id}");
     });
 
     $app->post("/delete_tasks", function() use ($app) {
-        Tasks::deleteAll();
+        Task::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
 
